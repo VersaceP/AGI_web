@@ -1,0 +1,804 @@
+<html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI实践派-J - 个人网站</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 引入Google字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cyber-black': '#0d0221',
+            'cyber-dark': '#150734',
+            'cyber-pink': '#ff2a6d',
+            'cyber-blue': '#05d9e8',
+            'cyber-purple': '#d300c5',
+            'cyber-yellow': '#fee800',
+          },
+          fontFamily: {
+            'orbitron': ['Orbitron', 'sans-serif'],
+            'rajdhani': ['Rajdhani', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow-neon-pink {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff2a6d, 0 0 20px #ff2a6d, 0 0 25px #ff2a6d, 0 0 30px #ff2a6d, 0 0 35px #ff2a6d;
+      }
+      .text-shadow-neon-blue {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #05d9e8, 0 0 20px #05d9e8, 0 0 25px #05d9e8, 0 0 30px #05d9e8, 0 0 35px #05d9e8;
+      }
+      .text-shadow-neon-purple {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #d300c5, 0 0 20px #d300c5, 0 0 25px #d300c5, 0 0 30px #d300c5, 0 0 35px #d300c5;
+      }
+      .border-glow-pink {
+        box-shadow: 0 0 5px #ff2a6d, 0 0 10px #ff2a6d;
+      }
+      .border-glow-blue {
+        box-shadow: 0 0 5px #05d9e8, 0 0 10px #05d9e8;
+      }
+      .glitch {
+        position: relative;
+      }
+      .glitch::before, .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff2a6d;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+      .glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #05d9e8;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+      }
+      @keyframes glitch-anim {
+        0% { clip: rect(42px, 9999px, 44px, 0); }
+        5% { clip: rect(12px, 9999px, 59px, 0); }
+        10% { clip: rect(48px, 9999px, 29px, 0); }
+        15% { clip: rect(42px, 9999px, 73px, 0); }
+        20% { clip: rect(63px, 9999px, 27px, 0); }
+        25% { clip: rect(34px, 9999px, 55px, 0); }
+        30% { clip: rect(86px, 9999px, 73px, 0); }
+        35% { clip: rect(20px, 9999px, 20px, 0); }
+        40% { clip: rect(26px, 9999px, 60px, 0); }
+        45% { clip: rect(25px, 9999px, 66px, 0); }
+        50% { clip: rect(57px, 9999px, 98px, 0); }
+        55% { clip: rect(5px, 9999px, 46px, 0); }
+        60% { clip: rect(82px, 9999px, 31px, 0); }
+        65% { clip: rect(54px, 9999px, 27px, 0); }
+        70% { clip: rect(28px, 9999px, 99px, 0); }
+        75% { clip: rect(45px, 9999px, 69px, 0); }
+        80% { clip: rect(23px, 9999px, 85px, 0); }
+        85% { clip: rect(54px, 9999px, 84px, 0); }
+        90% { clip: rect(45px, 9999px, 47px, 0); }
+        95% { clip: rect(37px, 9999px, 20px, 0); }
+        100% { clip: rect(4px, 9999px, 91px, 0); }
+      }
+      @keyframes glitch-anim2 {
+        0% { clip: rect(65px, 9999px, 100px, 0); }
+        5% { clip: rect(52px, 9999px, 74px, 0); }
+        10% { clip: rect(79px, 9999px, 85px, 0); }
+        15% { clip: rect(75px, 9999px, 5px, 0); }
+        20% { clip: rect(67px, 9999px, 61px, 0); }
+        25% { clip: rect(14px, 9999px, 79px, 0); }
+        30% { clip: rect(1px, 9999px, 66px, 0); }
+        35% { clip: rect(86px, 9999px, 30px, 0); }
+        40% { clip: rect(23px, 9999px, 98px, 0); }
+        45% { clip: rect(85px, 9999px, 72px, 0); }
+        50% { clip: rect(71px, 9999px, 75px, 0); }
+        55% { clip: rect(2px, 9999px, 48px, 0); }
+        60% { clip: rect(30px, 9999px, 16px, 0); }
+        65% { clip: rect(59px, 9999px, 50px, 0); }
+        70% { clip: rect(41px, 9999px, 62px, 0); }
+        75% { clip: rect(2px, 9999px, 82px, 0); }
+        80% { clip: rect(47px, 9999px, 73px, 0); }
+        85% { clip: rect(3px, 9999px, 27px, 0); }
+        90% { clip: rect(26px, 9999px, 55px, 0); }
+        95% { clip: rect(42px, 9999px, 97px, 0); }
+        100% { clip: rect(38px, 9999px, 49px, 0); }
+      }
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,0.05) 50%,
+          rgba(255,255,255,0) 100%
+        );
+        opacity: 0.1;
+        z-index: 100;
+        pointer-events: none;
+        animation: scanline 10s linear infinite;
+      }
+      @keyframes scanline {
+        0% { top: -100%; }
+        100% { top: 100%; }
+      }
+      .timeline-dot::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #05d9e8;
+        left: -10px;
+        top: 5px;
+        box-shadow: 0 0 10px #05d9e8, 0 0 20px #05d9e8;
+      }
+      .timeline-line::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background-color: rgba(5, 217, 232, 0.3);
+        left: 0;
+        top: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-cyber-black text-gray-300 font-rajdhani overflow-x-hidden">
+  <!-- 扫描线效果，增强赛博朋克感 -->
+  <div class="scanline"></div>
+  
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-cyber-black/80 backdrop-blur-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#home" class="text-cyber-blue font-orbitron font-bold text-xl md:text-2xl text-shadow-neon-blue hover:text-white transition-colors duration-300">AI实践派-J</a>
+      
+      <!-- 桌面导航 -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300">首页</a>
+        <a href="#about" class="nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300">关于我</a>
+        <a href="#skills" class="nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300">技能</a>
+        <a href="#projects" class="nav-link text-gray-300 hover:text-cyber-pink transition-colors duration-300">项目</a>
+        <a href="#contact" class="nav-link text-gray-300 hover:text-cyber-pink transition-colors duration-300">联系我</a>
+      </div>
+      
+      <!-- 移动端汉堡菜单 -->
+      <button id="menu-toggle" class="md:hidden text-gray-300 hover:text-cyber-blue transition-colors">
+        <i class="fa fa-bars text-2xl"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cyber-dark/95 backdrop-blur-md border-t border-cyber-blue/30">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="#home" class="mobile-nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300 py-2">首页</a>
+        <a href="#about" class="mobile-nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300 py-2">关于我</a>
+        <a href="#skills" class="mobile-nav-link text-gray-300 hover:text-cyber-blue transition-colors duration-300 py-2">技能</a>
+        <a href="#projects" class="mobile-nav-link text-gray-300 hover:text-cyber-pink transition-colors duration-300 py-2">项目</a>
+        <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-cyber-pink transition-colors duration-300 py-2">联系我</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 首页区域 -->
+  <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+    <!-- 背景装饰元素 -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-pink/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-blue/20 rounded-full blur-[100px]"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyber-purple/20 rounded-full blur-[80px]"></div>
+      
+      <!-- 网格线条 -->
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjUwIDBoLTUwdjUwaDUwdjUwaDUwdjUwaDV2LTUwaC01MHYtNTBoLTUwdjUwaC01di01MGg1MHYtNTBoNTB2LTUwaDV2NTVoLTV2NTVoLTV2LTUwaDUwdjUwaDUwdi01MGgtNTB6IiBmaWxsPSJub25lIiBzdHJva2U9IiMyYTIyMmEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10 pt-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="glitch text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold mb-6 text-white" data-text="你做好准备迎接AGI的到来吗？">
+          你做好准备迎接AGI的到来吗？
+        </h1>
+        <p class="text-2xl md:text-3xl lg:text-4xl font-orbitron mb-8 text-cyber-blue text-shadow-neon-blue">
+          AI技术实践者
+        </p>
+        <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+          做过上亿营收互联网产品，产品用户量级破千万，也在路边卖过炒粉。<br>
+          保持好奇，持续创造，一起来玩AI。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#about" class="scroll-link px-8 py-3 bg-transparent border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue/20 transition-all duration-300 font-medium rounded-md border-glow-blue hover:border-glow-blue hover:text-white">
+            了解更多 <i class="fa fa-arrow-down ml-2"></i>
+          </a>
+          <a href="#contact" class="scroll-link px-8 py-3 bg-transparent border-2 border-cyber-pink text-cyber-pink hover:bg-cyber-pink/20 transition-all duration-300 font-medium rounded-md hover:border-glow-pink hover:text-white">
+            联系我 <i class="fa fa-envelope ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 向下滚动提示 -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#about" class="scroll-link text-gray-400 hover:text-cyber-blue transition-colors">
+        <i class="fa fa-angle-down text-3xl"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 关于我区域 -->
+  <section id="about" class="min-h-screen flex items-center relative py-20 opacity-0 transition-opacity duration-1000">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/3 right-1/3 w-80 h-80 bg-cyber-purple/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-1/3 left-1/3 w-80 h-80 bg-cyber-blue/20 rounded-full blur-[100px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-orbitron font-bold mb-4 text-white">
+            <span class="text-cyber-pink text-shadow-neon-pink">关于</span>我
+          </h2>
+          <div class="w-24 h-1 bg-cyber-blue mx-auto mb-6"></div>
+          <p class="text-lg max-w-3xl mx-auto">工作经验10年。我是一名AI创业者，热衷于用AI技术解决已有的问题，现在在做一个AI剪辑器相关项目。</p>
+        </div>
+        
+        <div class="grid md:grid-cols-5 gap-8 mb-16">
+          <div class="md:col-span-2">
+            <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-blue/30 hover:border-cyber-blue/60 transition-all duration-500 h-full">
+              <h3 class="text-2xl font-orbitron font-semibold mb-4 text-cyber-blue">个人简介</h3>
+              <p class="mb-4 leading-relaxed">
+                我于2017年踏入科技行业，从业以来做过电商行业、做过社交、做过咨询、做过web3，到现在做AI。
+              </p>
+              <p class="leading-relaxed">
+                从事过的领域也从数据分析师-&gt;业务增长-&gt;产品经理-&gt;创业者，虽然角色身份一直在变化，但工作方法一直持续优化，无论是技术还是思考上面，希望能给大家带来一些启发。
+              </p>
+              
+              <div class="mt-8">
+                <h4 class="text-xl font-orbitron font-semibold mb-3 text-cyber-pink">个人特质</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-cyber-pink/20 text-cyber-pink rounded-full text-sm">持续学习</span>
+                  <span class="px-3 py-1 bg-cyber-blue/20 text-cyber-blue rounded-full text-sm">解决问题</span>
+                  <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm">创新思维</span>
+                  <span class="px-3 py-1 bg-cyber-yellow/20 text-cyber-yellow rounded-full text-sm">执行力强</span>
+                  <span class="px-3 py-1 bg-cyber-pink/20 text-cyber-pink rounded-full text-sm">跨界思考</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="md:col-span-3">
+            <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-pink/30 hover:border-cyber-pink/60 transition-all duration-500 h-full">
+              <h3 class="text-2xl font-orbitron font-semibold mb-6 text-cyber-pink">我的历程</h3>
+              
+              <div class="relative timeline-line pl-8 space-y-12">
+                <!-- 时间线项目 -->
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2014-2015年底</h4>
+                  <p>校园创业项目失败</p>
+                </div>
+                
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2016年-2017年</h4>
+                  <p>担任数据分析师（负责业务数据分析，内容推荐算法与反垃圾邮件算法研发）</p>
+                </div>
+                
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2018-2020年</h4>
+                  <p>项目增长，跨境电商平台年营收破3亿，用户平台月活破千万</p>
+                </div>
+                
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2024年11月</h4>
+                  <p>开始创业</p>
+                </div>
+                
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2025年3月</h4>
+                  <p>随剪AI项目立项</p>
+                </div>
+                
+                <div class="relative timeline-dot">
+                  <h4 class="text-xl font-orbitron font-semibold text-cyber-blue mb-2">2025年7月</h4>
+                  <p>随剪AI上线内测</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能展示区 -->
+  <section id="skills" class="min-h-screen flex items-center relative py-20 opacity-0 transition-opacity duration-1000">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyber-blue/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyber-pink/20 rounded-full blur-[100px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-orbitron font-bold mb-4 text-white">
+            我的<span class="text-cyber-blue text-shadow-neon-blue">技能</span>
+          </h2>
+          <div class="w-24 h-1 bg-cyber-pink mx-auto mb-6"></div>
+          <p class="text-lg max-w-3xl mx-auto">多年跨领域经验积累的技能栈，从技术到产品，从运营到创业</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- 正经技能 -->
+          <div>
+            <h3 class="text-2xl font-orbitron font-semibold mb-6 text-cyber-blue flex items-center">
+              <i class="fa fa-code mr-3"></i> 正经技能
+            </h3>
+            
+            <div class="space-y-6">
+              <!-- 技术技能 -->
+              <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-blue/30 hover:border-cyber-blue/60 transition-all duration-300 transform hover:-translate-y-1">
+                <h4 class="text-xl font-orbitron font-medium mb-4 text-white">技术能力</h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="skill-item">
+                    <div class="flex justify-between mb-1">
+                      <span class="text-cyber-blue">机器学习</span>
+                      <span>90%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                      <div class="bg-cyber-blue h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item">
+                    <div class="flex justify-between mb-1">
+                      <span class="text-cyber-blue">Python</span>
+                      <span>85%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                      <div class="bg-cyber-blue h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item">
+                    <div class="flex justify-between mb-1">
+                      <span class="text-cyber-blue">数据分析</span>
+                      <span>95%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                      <div class="bg-cyber-blue h-2 rounded-full" style="width: 95%"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item">
+                    <div class="flex justify-between mb-1">
+                      <span class="text-cyber-blue">MySQL</span>
+                      <span>80%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                      <div class="bg-cyber-blue h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item">
+                    <div class="flex justify-between mb-1">
+                      <span class="text-cyber-blue">Elastic Search</span>
+                      <span>75%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                      <div class="bg-cyber-blue h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 产品技能 -->
+              <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-pink/30 hover:border-cyber-pink/60 transition-all duration-300 transform hover:-translate-y-1">
+                <h4 class="text-xl font-orbitron font-medium mb-4 text-white">产品能力</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle text-cyber-pink mr-3"></i>
+                    <span>产品设计</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle text-cyber-pink mr-3"></i>
+                    <span>商业化</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 运营技能 -->
+              <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-purple/30 hover:border-cyber-purple/60 transition-all duration-300 transform hover:-translate-y-1">
+                <h4 class="text-xl font-orbitron font-medium mb-4 text-white">运营能力</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle text-cyber-purple mr-3"></i>
+                    <span>增长实验</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle text-cyber-purple mr-3"></i>
+                    <span>AB测试</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle text-cyber-purple mr-3"></i>
+                    <span>增长飞轮</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 学习中技能 -->
+              <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-yellow/30 hover:border-cyber-yellow/60 transition-all duration-300 transform hover:-translate-y-1">
+                <h4 class="text-xl font-orbitron font-medium mb-4 text-white">学习中</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <i class="fa fa-hourglass-half text-cyber-yellow mr-3"></i>
+                    <span>深度学习</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-hourglass-half text-cyber-yellow mr-3"></i>
+                    <span>LLM大模型</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 不正经技能 -->
+          <div>
+            <h3 class="text-2xl font-orbitron font-semibold mb-6 text-cyber-pink flex items-center">
+              <i class="fa fa-gamepad mr-3"></i> 不正经技能
+            </h3>
+            
+            <div class="bg-cyber-dark/60 backdrop-blur-sm p-8 rounded-lg border border-cyber-pink/30 hover:border-cyber-pink/60 transition-all duration-300 h-full">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="skill-card text-center p-6 bg-cyber-black/50 rounded-lg hover:bg-cyber-pink/10 transition-all duration-300 transform hover:scale-105">
+                  <div class="w-16 h-16 bg-cyber-pink/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-heart text-2xl text-cyber-pink"></i>
+                  </div>
+                  <h4 class="text-xl font-orbitron font-medium mb-2 text-white">泡妞</h4>
+                  <p class="text-gray-400">情场老手，经验丰富</p>
+                </div>
+                
+                <div class="skill-card text-center p-6 bg-cyber-black/50 rounded-lg hover:bg-cyber-blue/10 transition-all duration-300 transform hover:scale-105">
+                  <div class="w-16 h-16 bg-cyber-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-paint-brush text-2xl text-cyber-blue"></i>
+                  </div>
+                  <h4 class="text-xl font-orbitron font-medium mb-2 text-white">画猫</h4>
+                  <p class="text-gray-400">专业级猫咪画师</p>
+                </div>
+                
+                <div class="skill-card text-center p-6 bg-cyber-black/50 rounded-lg hover:bg-cyber-purple/10 transition-all duration-300 transform hover:scale-105 md:col-span-2">
+                  <div class="w-16 h-16 bg-cyber-purple/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-bullhorn text-2xl text-cyber-purple"></i>
+                  </div>
+                  <h4 class="text-xl font-orbitron font-medium mb-2 text-white">吹牛逼</h4>
+                  <p class="text-gray-400">能把死的说活，活的说成AI</p>
+                </div>
+              </div>
+              
+              <div class="mt-12">
+                <h4 class="text-xl font-orbitron font-semibold mb-4 text-cyber-yellow text-center">创业思维</h4>
+                <p class="text-center leading-relaxed">
+                  经历过多次创业，深谙从0到1的艰辛与乐趣。擅长在资源有限的情况下，找到破局点，实现指数级增长。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目展示区 -->
+  <section id="projects" class="min-h-screen flex items-center relative py-20 opacity-0 transition-opacity duration-1000">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/3 left-1/3 w-96 h-96 bg-cyber-purple/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyber-pink/20 rounded-full blur-[100px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-orbitron font-bold mb-4 text-white">
+            我的<span class="text-cyber-pink text-shadow-neon-pink">项目</span>
+          </h2>
+          <div class="w-24 h-1 bg-cyber-blue mx-auto mb-6"></div>
+          <p class="text-lg max-w-3xl mx-auto">专注于AI领域的创新项目，用人工智能改变传统工作方式</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- 随剪AI项目 -->
+          <div class="project-card group">
+            <div class="relative overflow-hidden rounded-lg mb-4 aspect-video">
+              <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/96c747c6aaa94abc8a742b32a0e59073~tplv-a9rns2rl98-image.image?rcl=202508211143015ED19319FFF64E1D53AA&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756352581&amp;x-signature=%2B7QcTe8nBBlQdRJ188pmbfQm4EY%3D" alt="随剪AI项目展示图" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-cyber-black to-transparent opacity-70"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-3 py-1 bg-cyber-blue/80 text-white text-sm rounded-full">AI工具</span>
+              </div>
+            </div>
+            
+            <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-blue/30 hover:border-cyber-blue/60 transition-all duration-300">
+              <h3 class="text-2xl font-orbitron font-semibold mb-3 text-cyber-blue group-hover:text-white transition-colors">随剪AI</h3>
+              <p class="text-gray-300 mb-4">一个创意·10分钟落地</p>
+              <p class="mb-6">输入想法，自动生成脚本、分镜、配音、剪辑，适配抖音/快手/B站/小红书/Youtube等多平台</p>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-cyber-blue/20 text-cyber-blue rounded-full text-xs">AI生成</span>
+                <span class="px-3 py-1 bg-cyber-pink/20 text-cyber-pink rounded-full text-xs">视频剪辑</span>
+                <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-xs">多平台适配</span>
+              </div>
+              
+              <a href="#" class="inline-flex items-center text-cyber-blue hover:text-white transition-colors">
+                了解更多 <i class="fa fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- AI剪辑器项目 -->
+          <div class="project-card group">
+            <div class="relative overflow-hidden rounded-lg mb-4 aspect-video">
+              <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/027146e3f0a24631969bf889627daefd~tplv-a9rns2rl98-image.image?rcl=20250821114312F8E725DD5FF5112452A4&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756352592&amp;x-signature=4N2Q5rhF2LYwjBK1dft7DB%2FUvCI%3D" alt="AI剪辑器项目展示图" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-cyber-black to-transparent opacity-70"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-3 py-1 bg-cyber-pink/80 text-white text-sm rounded-full">AI革命</span>
+              </div>
+            </div>
+            
+            <div class="bg-cyber-dark/60 backdrop-blur-sm p-6 rounded-lg border border-cyber-pink/30 hover:border-cyber-pink/60 transition-all duration-300">
+              <h3 class="text-2xl font-orbitron font-semibold mb-3 text-cyber-pink group-hover:text-white transition-colors">AI剪辑器</h3>
+              <p class="text-gray-300 mb-4">对话式剪辑革命</p>
+              <p class="mb-6">一句话搞定专业级视频处理，无需学习时间轴，AI Agent 听懂你的需求，让剪辑像聊天一样简单。直接用口语化指令操控视频，AI Agent 实时解析语义并执行，彻底告别传统剪辑软件的「时间轴拖拽 + 参数调节」模式。</p>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-cyber-pink/20 text-cyber-pink rounded-full text-xs">对话式交互</span>
+                <span class="px-3 py-1 bg-cyber-blue/20 text-cyber-blue rounded-full text-xs">AI Agent</span>
+                <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-xs">视频处理</span>
+              </div>
+              
+              <a href="#" class="inline-flex items-center text-cyber-pink hover:text-white transition-colors">
+                了解更多 <i class="fa fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系区域 -->
+  <section id="contact" class="min-h-screen flex items-center relative py-20 opacity-0 transition-opacity duration-1000">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-blue/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-purple/20 rounded-full blur-[100px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-orbitron font-bold mb-4 text-white">
+            <span class="text-cyber-purple text-shadow-neon-purple">联系</span>我
+          </h2>
+          <div class="w-24 h-1 bg-cyber-pink mx-auto mb-6"></div>
+          <p class="text-lg max-w-3xl mx-auto">对AI感兴趣？想合作？有问题？随时联系我</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-cyber-dark/60 backdrop-blur-sm p-8 rounded-lg border border-cyber-purple/30 hover:border-cyber-purple/60 transition-all duration-300">
+            <h3 class="text-2xl font-orbitron font-semibold mb-6 text-cyber-purple">联系方式</h3>
+            
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-cyber-purple/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-envelope text-xl text-cyber-purple"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-white mb-1">邮箱</h4>
+                  <p class="text-gray-400">contact@aipractitioner-j.com</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-cyber-blue/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-weixin text-xl text-cyber-blue"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-white mb-1">微信</h4>
+                  <p class="text-gray-400">AI-Practitioner-J</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-cyber-pink/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-github text-xl text-cyber-pink"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-white mb-1">GitHub</h4>
+                  <p class="text-gray-400">github.com/AI-Practitioner-J</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-12">
+              <h4 class="text-xl font-orbitron font-semibold mb-4 text-white">关注我</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 bg-cyber-blue/20 rounded-full flex items-center justify-center text-cyber-blue hover:bg-cyber-blue hover:text-white transition-all duration-300">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-cyber-pink/20 rounded-full flex items-center justify-center text-cyber-pink hover:bg-cyber-pink hover:text-white transition-all duration-300">
+                  <i class="fa fa-weibo"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-cyber-purple/20 rounded-full flex items-center justify-center text-cyber-purple hover:bg-cyber-purple hover:text-white transition-all duration-300">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-cyber-yellow/20 rounded-full flex items-center justify-center text-cyber-yellow hover:bg-cyber-yellow hover:text-cyber-black transition-all duration-300">
+                  <i class="fa fa-youtube-play"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <form class="bg-cyber-dark/60 backdrop-blur-sm p-8 rounded-lg border border-cyber-pink/30 hover:border-cyber-pink/60 transition-all duration-300">
+              <h3 class="text-2xl font-orbitron font-semibold mb-6 text-cyber-pink">发送消息</h3>
+              
+              <div class="space-y-6">
+                <div>
+                  <label for="name" class="block text-gray-300 mb-2">姓名</label>
+                  <input type="text" id="name" class="w-full bg-cyber-black/50 border border-gray-700 rounded-md px-4 py-3 text-white focus:outline-none focus:border-cyber-pink transition-colors" placeholder="您的姓名">
+                </div>
+                
+                <div>
+                  <label for="email" class="block text-gray-300 mb-2">邮箱</label>
+                  <input type="email" id="email" class="w-full bg-cyber-black/50 border border-gray-700 rounded-md px-4 py-3 text-white focus:outline-none focus:border-cyber-pink transition-colors" placeholder="您的邮箱">
+                </div>
+                
+                <div>
+                  <label for="subject" class="block text-gray-300 mb-2">主题</label>
+                  <input type="text" id="subject" class="w-full bg-cyber-black/50 border border-gray-700 rounded-md px-4 py-3 text-white focus:outline-none focus:border-cyber-pink transition-colors" placeholder="消息主题">
+                </div>
+                
+                <div>
+                  <label for="message" class="block text-gray-300 mb-2">消息</label>
+                  <textarea id="message" rows="5" class="w-full bg-cyber-black/50 border border-gray-700 rounded-md px-4 py-3 text-white focus:outline-none focus:border-cyber-pink transition-colors" placeholder="请输入您的消息..."></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-transparent border-2 border-cyber-pink text-cyber-pink hover:bg-cyber-pink hover:text-white transition-all duration-300 font-medium rounded-md py-3 px-6 hover:border-glow-pink">
+                  发送消息 <i class="fa fa-paper-plane ml-2"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-cyber-dark/80 backdrop-blur-md border-t border-gray-800 py-8">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#home" class="text-cyber-blue font-orbitron font-bold text-xl text-shadow-neon-blue hover:text-white transition-colors duration-300">
+              AI实践派-J
+            </a>
+            <p class="text-gray-500 mt-2">AI技术实践者的个人网站</p>
+          </div>
+          
+          <div class="text-gray-500 text-center md:text-right">
+            <p>© 2025 AI实践派-J. 保留所有权利.</p>
+            <p class="mt-1">用AI塑造未来</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-cyber-blue/80 text-white rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-cyber-blue hover:scale-110 z-50">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航菜单切换
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 关闭移动菜单当点击导航链接
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // 平滑滚动 - 导航栏点击跳转对应模块
+    document.querySelectorAll('.scroll-link, .nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // 返回顶部按钮
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+      
+      // 导航栏滚动效果
+      const navbar = document.getElementById('navbar');
+      if (window.pageYOffset > 50) {
+        navbar.classList.add('py-2', 'shadow-lg', 'shadow-cyber-blue/10');
+        navbar.classList.remove('py-4');
+      } else {
+        navbar.classList.add('py-4');
+        navbar.classList.remove('py-2', 'shadow-lg', 'shadow-cyber-blue/10');
+      }
+      
+      // 滚动时显示元素动画
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight * 0.75) {
+          section.classList.add('opacity-100');
+          section.classList.remove('opacity-0');
+        }
+      });
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // 页面加载时初始化
+    window.addEventListener('load', () => {
+      // 触发一次滚动事件以初始化元素状态
+      window.dispatchEvent(new Event('scroll'));
+      
+      // 首页总是显示
+      document.getElementById('home').classList.add('opacity-100');
+      document.getElementById('home').classList.remove('opacity-0');
+    });
+  </script>
+
+
+</body></html>
